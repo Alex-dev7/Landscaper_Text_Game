@@ -10,7 +10,9 @@ game = {
 tools = [
     {"name": "Teeth", "profit": 1 , "price": 0 },
     {"name": "Rusty Scissors", "profit": 5 , "price": 5 },
-    {"name": "Push Lawnmower", "profit": 50  , "price": 25 }
+    {"name": "Push Lawnmower", "profit": 50  , "price": 25 },
+    {"name": "Battery-powered Lawnmower", "profit": 100  , "price": 250 },
+    {"name": "Team of Starving Students", "profit": 250  , "price": 500 }
 ]
 
 def mow_lawn():
@@ -33,10 +35,17 @@ def upgrade():
     
 def check_stats():
     print(f"You have {game['money']} $ ")
+    
+def check_winner():
+    if(game["money"] >= 1000 and game["tool"] == 4):
+        print("You WON!")
 
+    elif(game["money"] >= 1000 and game["tool"] < 4):
+        print("You FAILED to use all the resources!")
 
+        
 while(True):
-    user_choice = input("[1] Mow Lawn [2] Check stats [3] Upgrade [Q] Quit Game")
+    user_choice = input("[1] Mow Lawn [2] Check stats [3] Upgrade [Q] Quit Game [R] Reset")
     
     if(user_choice == "1"):
         mow_lawn()
@@ -50,3 +59,8 @@ while(True):
     if(user_choice == "Q"):
         print("Game Over")
         break
+    
+    check_winner()
+    break
+  
+#   print("Would you like to play again?")
