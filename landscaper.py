@@ -1,5 +1,5 @@
 ############ LANDSCAPER Game ##############
-
+import random
 
 game = {
     "tool": 0,
@@ -15,15 +15,58 @@ tools = [
     {"name": "Team of Starving Students", "profit": 250  , "price": 500 }
 ]
 
+prizes = [
+    """\
+    .===. (
+    |   |  )
+    |   | (
+    |   | )
+    |   \*/
+  ,'    //.
+ :~~~~~//~~;      
+  `.  // .'
+sc`-------'
+ """,
+    """\
+ ___________________
+ | _______________ |
+ | |XXXXXXXXXXXXX| |
+ | |XXXXXXXXXXXXX| |
+ | |XXXXXXXXXXXXX| |
+ | |XXXXXXXXXXXXX| |
+ | |XXXXXXXXXXXXX| |
+ |_________________|
+     _[_______]_
+ ___[___________]___
+|         [_____] []|__
+|         [_____] []|  \__
+L___________________J     \ \___\/
+ ___________________      //
+/###################\    (__)  
+        """,
+    """\ 
+    /\_____/\
+   /  o   o  \
+  ( ==  ^  == )
+   )         (
+  (           )
+ ( (  )   (  ) )
+(__(__)___(__)__)
+     """
+
+]
+
+
+
 def mow_lawn():
     tool=tools[game["tool"]]
-    print(f"Mowing the lawn with {tool['name']} for {tool['profit']}")
+    print(f"Mowing the lawn with {tool['name']} for {tool['profit']} $")
     game["money"] += tool["profit"]
     
 def upgrade():
     next_tool = tools[game["tool"] + 1] 
     # print(next_tool)
-    if(game["money"] < next_tool["price"]):
+    if(game["money"] <= next_tool["price"]):
         print("Not enouth money for buying this tool")
         return 0 
     if(next_tool == None):
@@ -38,14 +81,19 @@ def check_stats():
     
 def check_winner():
     if(game["money"] >= 1000 and game["tool"] == 4):
-        print("You WON!")
-
+        print("You WON! C")
+        print(random.choice(prizes))
+        return True
     elif(game["money"] >= 1000 and game["tool"] < 4):
         print("You FAILED to use all the resources!")
+    return False
 
+def reset():
+    game["tool"] = 0
+    game["money"] = 0
         
 while(True):
-    user_choice = input("[1] Mow Lawn [2] Check stats [3] Upgrade [Q] Quit Game [R] Reset")
+    user_choice = input("[1] Mow Lawn [2] Check stats [3] Upgrade [R] Reset [Q] Quit Game  --- ")
     
     if(user_choice == "1"):
         mow_lawn()
@@ -55,12 +103,16 @@ while(True):
         
     if(user_choice == "3"):
         upgrade()
+        
+    if(user_choice == "R"):
+        reset()
     
     if(user_choice == "Q"):
         print("Game Over")
         break
+
+    if(check_winner()):
+        break
     
-    check_winner()
-    break
   
 #   print("Would you like to play again?")
