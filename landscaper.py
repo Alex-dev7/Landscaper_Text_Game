@@ -9,7 +9,8 @@ game = {
 
 tools = [
     {"name": "Teeth", "profit": 1 , "price": 0 },
-    {"name": "Rusty Scissors", "profit": 5 , "price": 5 }
+    {"name": "Rusty Scissors", "profit": 5 , "price": 5 },
+    {"name": "Push Lawnmower", "profit": 50  , "price": 25 }
 ]
 
 def mow_lawn():
@@ -47,4 +48,5 @@ while(True):
         upgrade()
     
     if(user_choice == "Q"):
+        print("Game Over")
         break
