@@ -4,7 +4,6 @@ import random
 game = {
     "tool": 0,
     "money": 0
-    # "tired": 0
 }
 
 tools = [
@@ -14,49 +13,6 @@ tools = [
     {"name": "Battery-powered Lawnmower", "profit": 100  , "price": 250 },
     {"name": "Team of Starving Students", "profit": 250  , "price": 500 }
 ]
-
-prizes = [
-    """\
-    .===. (
-    |   |  )
-    |   | (
-    |   | )
-    |   \*/
-  ,'    //.
- :~~~~~//~~;      
-  `.  // .'
-sc`-------'
- """,
-    """\
- ___________________
- | _______________ |
- | |XXXXXXXXXXXXX| |
- | |XXXXXXXXXXXXX| |
- | |XXXXXXXXXXXXX| |
- | |XXXXXXXXXXXXX| |
- | |XXXXXXXXXXXXX| |
- |_________________|
-     _[_______]_
- ___[___________]___
-|         [_____] []|__
-|         [_____] []|  \__
-L___________________J     \ \___\/
- ___________________      //
-/###################\    (__)  
-        """,
-    """\ 
-    /\_____/\
-   /  o   o  \
-  ( ==  ^  == )
-   )         (
-  (           )
- ( (  )   (  ) )
-(__(__)___(__)__)
-     """
-
-]
-
-
 
 def mow_lawn():
     tool=tools[game["tool"]]
@@ -81,17 +37,26 @@ def check_stats():
     
 def check_winner():
     if(game["money"] >= 1000 and game["tool"] == 4):
-        print("You WON! C")
-        print(random.choice(prizes))
-        return True
+        print("You Win!")
+        choice = input("Dy yoy want to play again? [Y] Yes [N] No --- ")
+        if(choice == "Y"):
+            reset()
+        else:
+            return True
     elif(game["money"] >= 1000 and game["tool"] < 4):
         print("You FAILED to use all the resources!")
+        choice = input("Dy yoy want to play again? [Y] Yes [N] No ---")
+        if(choice == "Y"):
+            reset()
+        else:
+            return True
     return False
 
 def reset():
     game["tool"] = 0
     game["money"] = 0
         
+## Game Loop        
 while(True):
     user_choice = input("[1] Mow Lawn [2] Check stats [3] Upgrade [R] Reset [Q] Quit Game  --- ")
     
@@ -114,5 +79,4 @@ while(True):
     if(check_winner()):
         break
     
-  
-#   print("Would you like to play again?")
+    
