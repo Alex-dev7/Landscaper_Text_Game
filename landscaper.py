@@ -1,6 +1,4 @@
 ############ LANDSCAPER Game ##############
-import random
-
 game = {
     "tool": 0,
     "money": 0
@@ -38,14 +36,14 @@ def check_stats():
 def check_winner():
     if(game["money"] >= 1000 and game["tool"] == 4):
         print("You Win!")
-        choice = input("Dy yoy want to play again? [Y] Yes [N] No --- ")
+        choice = input("Dy you want to play again? [Y] Yes [N] No --- ")
         if(choice == "Y"):
             reset()
         else:
             return True
     elif(game["money"] >= 1000 and game["tool"] < 4):
         print("You FAILED to use all the resources!")
-        choice = input("Dy yoy want to play again? [Y] Yes [N] No ---")
+        choice = input("Dy you want to play again? [Y] Yes [N] No ---")
         if(choice == "Y"):
             reset()
         else:
